@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
 
 @Service
 public class DepartmentServiceIpl implements DepartmentService{
@@ -32,5 +33,23 @@ public class DepartmentServiceIpl implements DepartmentService{
     public void deleteDepartmentById(Long departmentId) {
         departmentRepository.deleteById(departmentId);
     }
+
+    @Override
+    public Department updateDepartment(Long departmentId, Department department) {
+        Department depDB = departmentRepository.findById(departmentId).get();
+        //just checkin if anything notnull and blank, then only update value otherwise skip it
+        if(Objects.nonNull(department.getDepartmentName()) && !"".equals(department.getDepartmentName())){
+            depDB.setDepartmentName(department.getDepartmentName());
+        }
+        if(Objects.nonNull(department.getDepartmentAddress()) && !"".equals(department.getDepartmentAddress())){
+            depDB.setDepartmentAddress(department.getDepartmentAddress());
+        }
+        if(Objects.nonNull(department.getDepartmentCode()) && !"".equals(department.getDepartmentCode())){
+            depDB.setDepartmentCode(department.getDepartmentCode());
+        }
+
+        return departmentRepository.save(depDB);
+    }
+
 
 }
