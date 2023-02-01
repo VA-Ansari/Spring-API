@@ -27,4 +27,10 @@ public class DepartmentServiceIpl implements DepartmentService{
     public Department fetchDepartmentById(Long departmentId) {
         return departmentRepository.findById(departmentId).get();
     }
+
+    @Override
+    public void deleteDepartmentById(Long departmentId) {
+        departmentRepository.deleteById(departmentId);
+    }
+
 }
