@@ -2,6 +2,8 @@ package com.arshadansari.Springboot.demo.Controller;
 
 import com.arshadansari.Springboot.demo.entity.Department;
 import com.arshadansari.Springboot.demo.service.DepartmentService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,13 +15,17 @@ public class DepartmentController {
     @Autowired
     private DepartmentService departmentService;
 
+    private final Logger logger = LoggerFactory.getLogger(DepartmentController.class);
+
     @PostMapping("/departments")
     public Department saveDepartment(@RequestBody Department department){
+        logger.info("Inside the saveDepartment");
         return departmentService.saveDepartment(department);
     }
 
     @GetMapping("/departments")
     public List<Department> fetchDepartmentList(){
+        logger.info("Inside the fetchDepartmentList");
         return departmentService.fetchDepartmentList();
     }
 
