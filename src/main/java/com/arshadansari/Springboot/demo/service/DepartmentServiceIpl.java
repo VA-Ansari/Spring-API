@@ -4,7 +4,6 @@ import com.arshadansari.Springboot.demo.entity.Department;
 import com.arshadansari.Springboot.demo.repository.DepartmentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.Objects;
 
